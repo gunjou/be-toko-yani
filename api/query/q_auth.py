@@ -37,7 +37,7 @@ def login_user(username, password):
                     'id_user': result['id_user'],
                     'role': result['role'],
                     'id_lokasi': result['id_lokasi'],
-                    'nama': 'admin'
+                    'nama': 'Yani April'
                 }
 
             else:
