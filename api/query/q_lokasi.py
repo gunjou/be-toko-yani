@@ -3,8 +3,6 @@ from sqlalchemy.exc import SQLAlchemyError
 from ..utils.config import get_connection, get_wita
 
 
-timestamp_wita = get_wita()
-
 def get_all_lokasi():
     engine = get_connection()
     try:
@@ -49,6 +47,7 @@ def get_lokasi_by_id(id_lokasi):
         return []
     
 def update_lokasi(id_lokasi, data):
+    timestamp_wita = get_wita()
     engine = get_connection()
     try:
         with engine.begin() as connection:
@@ -66,6 +65,7 @@ def update_lokasi(id_lokasi, data):
         return None
     
 def delete_lokasi(id_lokasi):
+    timestamp_wita = get_wita()
     engine = get_connection()
     try:
         with engine.begin() as connection:

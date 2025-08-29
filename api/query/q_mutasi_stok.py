@@ -4,8 +4,6 @@ from sqlalchemy.exc import SQLAlchemyError
 from ..utils.config import get_connection, get_wita
 
 
-timestamp_wita = get_wita()
-
 def get_all_mutasi_stok(filters={}):
     engine = get_connection()
     try:
@@ -65,6 +63,7 @@ def get_all_mutasi_stok(filters={}):
         return []
 
 def insert_mutasi_stok(data):
+    timestamp_wita = get_wita()
     engine = get_connection()
     try:
         with engine.begin() as connection:

@@ -3,8 +3,6 @@ from sqlalchemy.exc import SQLAlchemyError
 from ..utils.config import get_connection, get_wita
 
 
-timestamp_wita = get_wita()
-
 def get_all_hutang():
     engine = get_connection()
     try:
@@ -21,6 +19,7 @@ def get_all_hutang():
         return []
     
 def insert_hutang(data):
+    timestamp_wita = get_wita()
     engine = get_connection()
     try:
         with engine.begin() as connection:
@@ -51,6 +50,7 @@ def get_hutang_by_id(id_hutang):
         return []
     
 def update_hutang(id_hutang, data):
+    timestamp_wita = get_wita()
     engine = get_connection()
     try:
         with engine.begin() as connection:
@@ -68,6 +68,7 @@ def update_hutang(id_hutang, data):
         return None
     
 def delete_hutang(id_hutang):
+    timestamp_wita = get_wita()
     engine = get_connection()
     try:
         with engine.begin() as connection:
@@ -146,6 +147,7 @@ def count_total_hutang_by_id(id_pelanggan):
         return []
 
 def bayar_hutang(id_pelanggan, jumlah_bayar):
+    timestamp_wita = get_wita()
     engine = get_connection()
     try:
         with engine.begin() as connection:

@@ -5,8 +5,6 @@ from sqlalchemy.exc import SQLAlchemyError
 from ..utils.config import get_connection, get_wita
 
 
-timestamp_wita = get_wita()
-
 def get_all_laporan_transaksi(periode=None, start_date=None, end_date=None):
     engine = get_connection()
     try:

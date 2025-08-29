@@ -4,8 +4,6 @@ from sqlalchemy.exc import SQLAlchemyError
 from ..utils.config import get_connection, get_wita
 
 
-timestamp_wita = get_wita()
-
 from flask import request
 
 def get_all_transaksi():
@@ -103,6 +101,7 @@ def get_all_transaksi():
         return []
 
 def insert_transaksi(payload):
+    timestamp_wita = get_wita()
     engine = get_connection()
     try:
         with engine.begin() as connection:

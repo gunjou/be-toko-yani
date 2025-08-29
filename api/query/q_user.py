@@ -3,8 +3,6 @@ from sqlalchemy.exc import SQLAlchemyError
 from ..utils.config import get_connection, get_wita
 
 
-timestamp_wita = get_wita()
-
 def get_all_users():
     engine = get_connection()
     try:
@@ -49,6 +47,7 @@ def get_user_by_id(id_user):
         return []
     
 def update_user(id_user, data):
+    timestamp_wita = get_wita()
     engine = get_connection()
     try:
         with engine.begin() as connection:
@@ -66,6 +65,7 @@ def update_user(id_user, data):
         return None
     
 def delete_user(id_user):
+    timestamp_wita = get_wita()
     engine = get_connection()
     try:
         with engine.begin() as connection:

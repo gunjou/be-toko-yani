@@ -3,8 +3,6 @@ from sqlalchemy.exc import SQLAlchemyError
 from ..utils.config import get_connection, get_wita
 
 
-timestamp_wita = get_wita()
-
 def get_stok(id_stok):
     engine = get_connection()
     try:
@@ -55,6 +53,7 @@ def get_all_stok(lokasi_id=None):
         return []
 
 def insert_stok(data):
+    timestamp_wita = get_wita()
     engine = get_connection()
     try:
         with engine.begin() as connection:
@@ -102,6 +101,7 @@ def insert_stok(data):
         return None
 
 def update_stok(id_stok, data):
+    timestamp_wita = get_wita()
     engine = get_connection()
     try:
         with engine.begin() as connection:
@@ -159,6 +159,7 @@ def update_stok(id_stok, data):
         return None
 
 def delete_stok(id_stok):
+    timestamp_wita = get_wita()
     engine = get_connection()
     try:
         with engine.begin() as connection:
