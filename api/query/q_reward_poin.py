@@ -4,6 +4,8 @@ from sqlalchemy import text
 
 from sqlalchemy.exc import SQLAlchemyError
 
+from api.utils.helper import serialize_datetime
+
 from ..utils.config import get_connection, get_wita
 
 
@@ -45,7 +47,7 @@ def get_all_reward_poin():
                 ORDER BY rp.id_reward DESC;
             """)).mappings().fetchall()
 
-            return [dict(row) for row in result]
+            return [serialize_datetime(dict(row)) for row in result]
 
     except SQLAlchemyError as e:
 
@@ -93,7 +95,7 @@ def get_reward_poin_by_id(id_reward):
                 "id_reward": id_reward
             }).mappings().fetchone()
 
-            return dict(result) if result else None
+            return serialize_datetime(dict(result)) if result else None
 
     except SQLAlchemyError as e:
 

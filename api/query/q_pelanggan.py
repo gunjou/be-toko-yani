@@ -2,6 +2,7 @@
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 
+from ..utils.helper import serialize_datetime
 from ..utils.config import get_connection, get_wita
 
 
@@ -273,7 +274,7 @@ def get_histori_poin_pelanggan(id_pelanggan):
                 }
             ).mappings().fetchall()
 
-            return [dict(row) for row in result]
+            return [serialize_datetime(dict(row)) for row in result]
 
     except SQLAlchemyError as e:
         print(f"Error: {e}")
