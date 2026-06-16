@@ -325,7 +325,8 @@ def insert_transaksi(payload):
                             poin = poin + :earned_point,
                             updated_at = :timestamp_wita
                         WHERE id_pelanggan = :id_pelanggan
-                        AND status = 1;
+                        AND status = 1
+                        RETURNING poin;
                     """), {
                         "earned_point": earned_point,
                         "id_pelanggan": id_pelanggan,
@@ -361,6 +362,14 @@ def insert_transaksi(payload):
                         "deskripsi": f"Poin dari transaksi #{id_transaksi}",
                         "timestamp_wita": timestamp_wita
                     })
+
+                total_poin = connection.execute(text("""
+                                SELECT poin FROM pelanggan
+                                WHERE id_pelanggan = :id_pelanggan
+                                AND status = 1
+                            """), {
+                                "id_pelanggan": id_pelanggan
+                            }).scalar()
 
             # =========================================================
             # INSERT HUTANG
@@ -488,6 +497,7 @@ def insert_transaksi(payload):
                 "id_transaksi": id_transaksi,
                 "id_pelanggan": id_pelanggan,
                 "earned_point": earned_point,
+                "total_point": total_poin if id_pelanggan else None,
                 "status_hutang": (
                     "belum lunas"
                     if tunai < total
